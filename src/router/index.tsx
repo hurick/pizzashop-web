@@ -1,10 +1,10 @@
 import { createBrowserRouter } from 'react-router-dom'
 
-import { LayoutApp } from '@/pages/_layouts/App'
-import { LayoutAuth } from '@/pages/_layouts/Auth'
-import { Dashboard } from '@/pages/app/Dashboard'
-import { SignIn } from '@/pages/auth/SignIn'
-import { SignUp } from '@/pages/auth/SignUp'
+import { LayoutApp } from '@/pages/_layouts/app'
+import { LayoutAuth } from '@/pages/_layouts/auth'
+import { Dashboard } from '@/pages/app/dashboard'
+import { SignIn } from '@/pages/auth/sign-in'
+import { SignUp } from '@/pages/auth/sign-up'
 
 export const router = createBrowserRouter([
   {
