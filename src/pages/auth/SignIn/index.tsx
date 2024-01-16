@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet-async'
 import { useForm } from 'react-hook-form'
+import { toast } from 'sonner'
 import { z } from 'zod'
 
 import { Button } from '@/components/ui/button'
@@ -20,8 +21,12 @@ export const SignIn = () => {
   } = useForm<SignInForm>()
 
   const handleSignIn = async ({ email }: SignInForm) => {
-    console.log("I'm signing in with", email)
-    await new Promise((resolve) => setTimeout(resolve, 2000))
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 2000))
+      toast.success('Confira seu e-mail para continuar com sua autenticação')
+    } catch (error) {
+      toast.error('Credenciais inválidas')
+    }
   }
 
   return (
