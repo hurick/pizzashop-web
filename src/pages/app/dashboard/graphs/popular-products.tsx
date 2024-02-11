@@ -4,16 +4,6 @@ import colors from 'tailwindcss/colors'
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
-interface CustomLabelProps {
-  cx: number
-  cy: number
-  midAngle: number
-  innerRadius: number
-  outerRadius: number
-  value: number
-  index: number
-}
-
 export const PopularProducts = () => {
   const data = [
     { product: 'Pepperoni', amount: 11 },
@@ -39,7 +29,7 @@ export const PopularProducts = () => {
     outerRadius,
     value,
     index,
-  }: CustomLabelProps) => {
+  }: PieCustomLabelProps) => {
     const RADIAN = Math.PI / 180
     const radius = 12 + innerRadius + (outerRadius - innerRadius)
     const x = cx + radius * Math.cos(-midAngle * RADIAN)
