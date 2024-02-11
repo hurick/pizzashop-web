@@ -1,9 +1,9 @@
 import { Helmet } from 'react-helmet-async'
 
-import { CardDailyOrderAmount } from './components/card-daily-order-amount'
-import { CardMonthlyCanceledOrderAmount } from './components/card-monthly-canceled-order-amount'
-import { CardMonthlyOrderAmount } from './components/card-monthly-order-amount'
-import { CardMonthlyRevenue } from './components/card-monthly-revenue'
+import { DailyOrderAmount } from './cards/daily-order-amount'
+import { MonthlyCanceledOrderAmount } from './cards/monthly-canceled-order-amount'
+import { MonthlyOrderAmount } from './cards/monthly-order-amount'
+import { MonthlyRevenue } from './cards/monthly-revenue'
 
 export const Dashboard = () => {
   return (
@@ -14,10 +14,10 @@ export const Dashboard = () => {
         <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
 
         <div className="grid grid-cols-4 gap-4">
-          <CardMonthlyRevenue />
-          <CardMonthlyOrderAmount />
-          <CardDailyOrderAmount />
-          <CardMonthlyCanceledOrderAmount />
+          <DailyOrderAmount />
+          <MonthlyOrderAmount />
+          <MonthlyCanceledOrderAmount />
+          <MonthlyRevenue />
         </div>
       </div>
     </>
