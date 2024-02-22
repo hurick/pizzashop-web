@@ -1,12 +1,15 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useQuery } from '@tanstack/react-query'
+import { useMutation, useQuery } from '@tanstack/react-query'
 import { useForm } from 'react-hook-form'
+import { toast } from 'sonner'
 import { z } from 'zod'
 
 import { getManagedRestaurant } from '@/api/managed-restaurant'
+import { updateProfile } from '@/api/update-profile'
 
 import { Button } from '../ui/button'
 import {
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -28,17 +31,35 @@ export const StoreProfile = () => {
   const { data: managedRestaurant } = useQuery({
     queryKey: ['managed-restaurant'],
     queryFn: getManagedRestaurant,
+    staleTime: Infinity,
   })
 
-  const { register, handleSubmit } = useForm<StoreProfile>({
+  const {
+    register,
+    handleSubmit,
+    formState: { isSubmitting },
+  } = useForm<StoreProfile>({
     resolver: zodResolver(StoreProfileSchema),
     values: {
       name: managedRestaurant?.name ?? '',
       description: managedRestaurant?.description ?? '',
     },
   })
-  const handleNewStoreProfileData = ({ name, description }: StoreProfile) => {
-    console.log({ name, description })
+
+  const { mutateAsync: updateProfileFn } = useMutation({
+    mutationFn: updateProfile,
+  })
+
+  const handleNewStoreProfileData = async ({
+    name,
+    description,
+  }: StoreProfile) => {
+    try {
+      await updateProfileFn({ name, description })
+      toast.success('Perfil atualizado com sucesso')
+    } catch (error) {
+      toast.error('Ocorreu um erro ao atualizar o perfil')
+    }
   }
 
   return (
@@ -72,10 +93,12 @@ export const StoreProfile = () => {
         </div>
 
         <DialogFooter>
-          <Button variant="ghost" type="button">
-            Cancelar
-          </Button>
-          <Button variant="success" type="submit">
+          <DialogClose asChild>
+            <Button variant="ghost" type="button">
+              Cancelar
+            </Button>
+          </DialogClose>
+          <Button disabled={isSubmitting} variant="success" type="submit">
             Salvar
           </Button>
         </DialogFooter>
