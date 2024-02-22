@@ -1,5 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation, useQuery } from '@tanstack/react-query'
+import { Loader2 } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod'
@@ -99,7 +100,14 @@ export const StoreProfile = () => {
             </Button>
           </DialogClose>
           <Button disabled={isSubmitting} variant="success" type="submit">
-            Salvar
+            {isSubmitting ? (
+              <>
+                <Loader2 className="mr-2 animate-spin" />
+                Salvar
+              </>
+            ) : (
+              'Salvar'
+            )}
           </Button>
         </DialogFooter>
       </form>
