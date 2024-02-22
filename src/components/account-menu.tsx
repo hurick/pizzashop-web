@@ -13,9 +13,10 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from './ui/dropdown-menu'
+import { Skeleton } from './ui/skeleton'
 
 export const AccountMenu = () => {
-  const { data: profile } = useQuery({
+  const { data: profile, isLoading: isLoadingProfile } = useQuery({
     queryKey: ['profile'],
     queryFn: getProfile,
   })
@@ -27,12 +28,16 @@ export const AccountMenu = () => {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
+      <DropdownMenuTrigger asChild disabled={isLoadingProfile}>
         <Button
           variant="outline"
           className="flex select-none items-center gap-2"
         >
-          {managedRestaurant?.name}
+          {isLoadingProfile ? (
+            <Skeleton className="h-4 w-32" />
+          ) : (
+            managedRestaurant?.name
+          )}
           <ChevronDown className="h-4 w-4" />
         </Button>
       </DropdownMenuTrigger>
