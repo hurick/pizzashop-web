@@ -100,11 +100,11 @@ export const OrderTableFilters = () => {
         render={({ field: { name, onChange, value, disabled } }) => {
           return (
             <Select
-              defaultValue="all"
               name={name}
-              onValueChange={onChange}
               value={value}
+              defaultValue="all"
               disabled={disabled}
+              onValueChange={onChange}
             >
               <SelectTrigger className="h-8 w-[180px]">
                 <SelectValue />
@@ -130,10 +130,10 @@ export const OrderTableFilters = () => {
 
       {(orderId || customerName || (status && status !== 'all')) && (
         <Button
-          onClick={handleClearFilters}
+          size="xs"
           type="button"
           variant="outline"
-          size="xs"
+          onClick={handleClearFilters}
         >
           <X className="mr-2 h-4 w-4" />
           Remover filtros
