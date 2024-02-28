@@ -1,4 +1,4 @@
-import { formatDistanceToNow } from 'date-fns'
+import { format, formatDistanceToNow } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 import { ArrowRight, Search, X } from 'lucide-react'
 
@@ -37,7 +37,10 @@ export const OrderTableRow = ({
         </Dialog>
       </TableCell>
       <TableCell className="font-mono text-xs font-medium">{orderId}</TableCell>
-      <TableCell className="text-muted-foreground">
+      <TableCell
+        title={`Realizado dia ${format(createdAt, 'dd/MM/yyyy')} às ${format(createdAt, 'HH:mm')}`}
+        className="text-muted-foreground"
+      >
         {formatDistanceToNow(createdAt, { locale: ptBR, addSuffix: true })}
       </TableCell>
       <TableCell>
