@@ -5,11 +5,11 @@ import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod'
 
+import { updateProfile } from '@/api/profile/update-profile'
 import {
   getManagedRestaurant,
   GetManagedRestaurantResponse,
 } from '@/api/restaurant/get-restaurant'
-import { updateProfile } from '@/api/profile/update-profile'
 
 import { Button } from '../ui/button'
 import {
