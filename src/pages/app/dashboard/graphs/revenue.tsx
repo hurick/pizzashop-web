@@ -1,3 +1,4 @@
+import { useQuery } from '@tanstack/react-query'
 import {
   CartesianGrid,
   Line,
@@ -8,6 +9,7 @@ import {
 } from 'recharts'
 import colors from 'tailwindcss/colors'
 
+import { getDailyRevenueInPeriod } from '@/api/dashboard/graphs/get-daily-revenue-in-period'
 import {
   Card,
   CardContent,
@@ -17,15 +19,10 @@ import {
 } from '@/components/ui/card'
 
 export const Revenue = () => {
-  const data = [
-    { date: '10/12', revenue: 1230 },
-    { date: '11/12', revenue: 200 },
-    { date: '12/12', revenue: 928 },
-    { date: '13/12', revenue: 129 },
-    { date: '14/12', revenue: 986 },
-    { date: '15/12', revenue: 640 },
-    { date: '16/12', revenue: 1012 },
-  ]
+  const { data: dailyRevenueInPeriod } = useQuery({
+    queryKey: ['metrics', 'daily-revenue-in-period'],
+    queryFn: getDailyRevenueInPeriod,
+  })
 
   return (
     <Card className="col-span-6">
@@ -39,33 +36,35 @@ export const Revenue = () => {
       </CardHeader>
 
       <CardContent>
-        <ResponsiveContainer width="100%" height={280}>
-          <LineChart style={{ fontSize: 12 }} data={data}>
-            <CartesianGrid vertical={false} className="stroke-muted" />
+        {dailyRevenueInPeriod && (
+          <ResponsiveContainer width="100%" height={280}>
+            <LineChart style={{ fontSize: 12 }} data={dailyRevenueInPeriod}>
+              <CartesianGrid vertical={false} className="stroke-muted" />
 
-            <YAxis
-              stroke="#888"
-              axisLine={false}
-              tickLine={false}
-              width={80}
-              tickFormatter={(value: number) =>
-                value.toLocaleString('pt-BR', {
-                  style: 'currency',
-                  currency: 'BRL',
-                })
-              }
-            />
+              <YAxis
+                stroke="#888"
+                axisLine={false}
+                tickLine={false}
+                width={80}
+                tickFormatter={(value: number) =>
+                  (value / 100).toLocaleString('pt-BR', {
+                    style: 'currency',
+                    currency: 'BRL',
+                  })
+                }
+              />
 
-            <XAxis dataKey="date" tickLine={false} axisLine={false} dy={16} />
+              <XAxis dataKey="date" tickLine={false} axisLine={false} dy={16} />
 
-            <Line
-              type="linear"
-              strokeWidth={2}
-              dataKey="revenue"
-              stroke={colors.violet[400]}
-            />
-          </LineChart>
-        </ResponsiveContainer>
+              <Line
+                type="linear"
+                strokeWidth={2}
+                dataKey="receipt"
+                stroke={colors.violet[400]}
+              />
+            </LineChart>
+          </ResponsiveContainer>
+        )}
       </CardContent>
     </Card>
   )
