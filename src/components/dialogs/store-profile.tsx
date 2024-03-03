@@ -8,8 +8,8 @@ import { z } from 'zod'
 import {
   getManagedRestaurant,
   GetManagedRestaurantResponse,
-} from '@/api/managed-restaurant'
-import { updateProfile } from '@/api/update-profile'
+} from '@/api/restaurant/get-restaurant'
+import { updateProfile } from '@/api/profile/update-profile'
 
 import { Button } from '../ui/button'
 import {
