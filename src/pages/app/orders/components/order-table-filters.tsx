@@ -44,7 +44,6 @@ export const OrderTableFilters = () => {
     customerName,
     status,
   }: OrderFiltersSchema) => {
-    console.log({ orderId, customerName, status })
     setSearchParams((state) => {
       orderId ? state.set('orderId', orderId) : state.delete('orderId')
       status ? state.set('status', status) : state.delete('status')
