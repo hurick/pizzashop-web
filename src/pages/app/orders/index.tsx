@@ -15,6 +15,7 @@ import {
 
 import { OrderTableFilters } from './components/order-table-filters'
 import { OrderTableRow } from './components/order-table-row'
+import { OrderTableSekelton } from './skeletons/order-table'
 
 export const Orders = () => {
   const [searchParams, setSearchParams] = useSearchParams()
@@ -28,7 +29,7 @@ export const Orders = () => {
     .transform((page) => page - 1)
     .parse(searchParams.get('page') ?? '1')
 
-  const { data: ordersResults } = useQuery({
+  const { data: ordersResults, isLoading: isLoadingOrdersResults } = useQuery({
     queryKey: ['orders', { pageIndex, orderId, customerName, status }],
     queryFn: () =>
       getOrders({
@@ -72,9 +73,13 @@ export const Orders = () => {
               </TableHeader>
 
               <TableBody>
-                {ordersResults?.orders.map((order) => (
-                  <OrderTableRow key={order.orderId} order={order} />
-                ))}
+                {isLoadingOrdersResults ? (
+                  <OrderTableSekelton />
+                ) : (
+                  ordersResults?.orders.map((order) => (
+                    <OrderTableRow key={order.orderId} order={order} />
+                  ))
+                )}
               </TableBody>
             </Table>
           </div>
