@@ -20,6 +20,8 @@ import {
   TableRow,
 } from '@/components/ui/table'
 
+import { OrderTableDetailsSkeleton } from '../skeletons/order-table-details'
+
 interface OrderDetailsProps {
   orderId: string
   open: boolean
@@ -39,7 +41,7 @@ export const OrderTableDetails = ({ orderId, open }: OrderDetailsProps) => {
         <DialogDescription>Detalhes do pedido</DialogDescription>
       </DialogHeader>
 
-      {order && (
+      {order ? (
         <div className="space-y-6">
           <Table>
             <TableBody>
@@ -136,6 +138,8 @@ export const OrderTableDetails = ({ orderId, open }: OrderDetailsProps) => {
             </TableFooter>
           </Table>
         </div>
+      ) : (
+        <OrderTableDetailsSkeleton />
       )}
     </DialogContent>
   )
