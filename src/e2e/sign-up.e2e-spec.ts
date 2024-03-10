@@ -20,7 +20,7 @@ test('sign up successfully', async ({ page }) => {
 
   await page.getByRole('button', { name: 'Finalizar cadastro' }).click()
 
-  expect(toast).toBeVisible()
+  await expect(toast).toBeVisible()
 })
 
 test('sign up unsuccessfully with wrong credentials', async ({ page }) => {
@@ -35,5 +35,5 @@ test('sign up unsuccessfully with wrong credentials', async ({ page }) => {
 
   await page.getByRole('button', { name: 'Finalizar cadastro' }).click()
 
-  expect(toast).toBeVisible()
+  await expect(toast).toBeVisible()
 })
