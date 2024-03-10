@@ -29,5 +29,5 @@ test('navigate to sign up restaurant', async ({ page }) => {
 
   await page.getByRole('link', { name: 'Novo estabelecimento' }).click()
 
-  await expect(page.url()).toContain('/sign-up')
+  expect(page.url()).toContain('/sign-up')
 })
