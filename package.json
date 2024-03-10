@@ -3,8 +3,12 @@
   "private": true,
   "version": "0.0.1",
   "type": "module",
+  "msw": {
+    "workerDirectory": "./public"
+  },
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --mode dev",
+    "dev:test": "vite --port 50789 --mode test",
     "test": "vitest",
     "clean": "rm -rf pnpm-lock.yaml node_modules/ dist/ && pnpm install",
     "build": "tsc && vite build",
