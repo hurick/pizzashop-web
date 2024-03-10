@@ -10,7 +10,7 @@
     "dev": "vite --mode dev",
     "dev:test": "vite --port 50789 --mode test",
     "test": "vitest",
-    "clean": "rm -rf pnpm-lock.yaml node_modules/ dist/ && pnpm install",
+    "clean": "rm -rf pnpm-lock.yaml node_modules/ dist/ playwright-report/ test-results/ && pnpm install",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
