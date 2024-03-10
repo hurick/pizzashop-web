@@ -89,7 +89,7 @@ export const SignUp = () => {
             </fieldset>
 
             <fieldset className="space-y-2">
-              <Label htmlFor="email">Seu E-mail</Label>
+              <Label htmlFor="email">Seu e-mail</Label>
               <Input id="email" type="email" {...register('email')} />
             </fieldset>
 
