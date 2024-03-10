@@ -11,6 +11,7 @@ import { getMonthlyRevenueMock } from './dashboard/cards/mocks/get-monthly-reven
 import { getDailyRevenueInPeriodMock } from './dashboard/graphs/mocks/get-daily-revenue-in-period'
 import { getPopularProductsMock } from './dashboard/graphs/mocks/get-popular-products'
 import { getProfileMock } from './profile/mocks/get-profile'
+import { updateProfileMock } from './profile/mocks/update-profile'
 import { getManagedRestaurantMock } from './restaurant/mocks/get-restaurant'
 
 export const worker = setupWorker(
@@ -23,6 +24,7 @@ export const worker = setupWorker(
   getDailyRevenueInPeriodMock,
   getPopularProductsMock,
   getProfileMock,
+  updateProfileMock,
   getManagedRestaurantMock,
 )
 
