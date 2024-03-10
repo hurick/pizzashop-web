@@ -18,9 +18,8 @@ test('successfully update profile', async ({ page }) => {
   expect(toast).toBeVisible()
 
   await page.getByRole('button', { name: 'Close' }).click()
-  await page.waitForTimeout(100)
 
-  expect(page.getByRole('button', { name: "Doe's Pizza" })).toBeVisible()
+  await expect(page.getByRole('button', { name: "Doe's Pizza" })).toBeVisible()
 })
 
 test('unsuccessfully update profile with wrong credentials', async ({
@@ -43,7 +42,6 @@ test('unsuccessfully update profile with wrong credentials', async ({
   expect(toast).toBeVisible()
 
   await page.getByRole('button', { name: 'Close' }).click()
-  await page.waitForTimeout(100)
 
-  expect(page.getByRole('button', { name: 'Pizza Shop' })).toBeVisible()
+  await expect(page.getByRole('button', { name: 'Pizza Shop' })).toBeVisible()
 })
