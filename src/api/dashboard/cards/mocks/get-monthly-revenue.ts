@@ -1,0 +1,14 @@
+import { http, HttpResponse } from 'msw'
+
+import { GetMonthlyRevenueResponse } from '../get-monthly-revenue'
+
+export const getMonthlyRevenueMock = http.get<
+  never,
+  never,
+  GetMonthlyRevenueResponse
+>('/metrics/month-receipt', () => {
+  return HttpResponse.json({
+    diffFromLastMonth: 21,
+    receipt: 12311,
+  })
+})
