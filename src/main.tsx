@@ -7,7 +7,7 @@ import { Helmet, HelmetProvider } from 'react-helmet-async'
 import { RouterProvider } from 'react-router-dom'
 import { Toaster } from 'sonner'
 
-import { enableMSW } from './api/mocks'
+import { enableMSW } from './api'
 import { ThemeProvider } from './components/theme/theme-provider'
 import { queryClient } from './lib/react-query'
 import { router } from './router'
