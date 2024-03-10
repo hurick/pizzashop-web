@@ -10,7 +10,7 @@ test('sign in successfully', async ({ page }) => {
   await page.getByLabel('E-mail').fill('johndoe@example.com')
   await page.getByRole('button', { name: 'Acessar painel' }).click()
 
-  expect(toast).toBeVisible()
+  await expect(toast).toBeVisible()
 })
 
 test('sign in unsuccessfully with wrong credentials', async ({ page }) => {
@@ -21,7 +21,7 @@ test('sign in unsuccessfully with wrong credentials', async ({ page }) => {
   await page.getByLabel('E-mail').fill('wrong@example.com')
   await page.getByRole('button', { name: 'Acessar painel' }).click()
 
-  expect(toast).toBeVisible()
+  await expect(toast).toBeVisible()
 })
 
 test('navigate to sign up restaurant', async ({ page }) => {
@@ -29,5 +29,5 @@ test('navigate to sign up restaurant', async ({ page }) => {
 
   await page.getByRole('link', { name: 'Novo estabelecimento' }).click()
 
-  expect(page.url()).toContain('/sign-up')
+  await expect(page.url()).toContain('/sign-up')
 })
