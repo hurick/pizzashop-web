@@ -8,6 +8,7 @@ import { getDailyOrderAmountMock } from './dashboard/cards/mocks/get-daily-order
 import { getMonthlyCanceledOrderAmountMock } from './dashboard/cards/mocks/get-monthly-canceled-order-amount'
 import { getMonthlyOrderAmountMock } from './dashboard/cards/mocks/get-monthly-order-amount'
 import { getMonthlyRevenueMock } from './dashboard/cards/mocks/get-monthly-revenue'
+import { getDailyRevenueInPeriodMock } from './dashboard/graphs/mocks/get-daily-revenue-in-period'
 
 export const worker = setupWorker(
   signInMock,
@@ -16,6 +17,7 @@ export const worker = setupWorker(
   getMonthlyOrderAmountMock,
   getMonthlyCanceledOrderAmountMock,
   getMonthlyRevenueMock,
+  getDailyRevenueInPeriodMock,
 )
 
 export const enableMSW = async () => {
